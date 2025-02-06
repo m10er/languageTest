@@ -1,0 +1,46 @@
+{
+  "name": "savvy",
+  "version": "1.0.0",
+  "main": "index.js",
+ "scripts": {
+  "pretest": "echo 'Pretest işlemleri gerçekleştiriliyor...'",
+  "clean": "rimraf allure-report allure-results && mkdirp allure-report allure-results",
+  "generate": "npx allure generate ./allure-results --clean",
+  "posttest": "npm run generate",
+  "test": "npm install && npm run clean && npm run execute",
+  "execute": "npx playwright test tests --project=chromium || npm run posttest",
+  "executechrome": "npx playwright test tests --project=chromium || npm run posttest",
+  "testchrome": "npm run pretest && npm run executechrome && npm run posttest",
+  "all": "npm install && npm run clean && npm run execute && npm run generate && npx allure open allure-report"
+},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@argos-ci/playwright": "^3.7.2",
+    "@faker-js/faker": "^9.0.3",
+    "@playwright/test": "^1.48.1",
+    "@types/node": "^22.7.7",
+    "@types/readline-sync": "^1.4.8",
+    "allure-commandline": "^2.32.0",
+    "allure-playwright": "^3.1.0",
+    "csv-parse": "5.5.6",
+    "dotenv": "^16.4.5",
+    "luxon": "3.5.0",
+    "mkdirp": "^3.0.1",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "gaxios": "^6.7.1",
+    "googleapis": "^144.0.0",
+    "http-server": "^14.1.1",
+    "playwright": "^1.48.1",
+    "readline-sync": "^1.4.10",
+    "ts-node": "^10.9.2"
+  },
+  "directories": {
+    "test": "tests"
+  }
+}
